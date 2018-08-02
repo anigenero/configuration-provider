@@ -88,7 +88,7 @@ project.task(type: JacocoReport, "jacocoJupTestReport") {
     classDirectories = files(sourceSets.main.output)
 
     reports {
-        xml.enabled false
+        xml.enabled true
         csv.enabled false
         html.destination "$buildDir/jacoco/html"
     }

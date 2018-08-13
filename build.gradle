@@ -9,14 +9,13 @@ buildscript {
     dependencies {
         classpath 'org.hibernate.build.gradle:gradle-maven-publish-auth:2.0.1'
         classpath 'net.linguica.gradle:maven-settings-plugin:0.5'
-        classpath 'com.bmuschko:gradle-tomcat-plugin:2.3'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.+'
     }
 
 }
 
 plugins {
     id 'maven'
-    id 'org.sonarqube' version '2.6.2'
 }
 
 apply plugin: 'idea'
@@ -24,6 +23,7 @@ apply plugin: 'jacoco'
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 apply plugin: 'net.linguica.maven-settings'
+apply plugin: 'com.jfrog.bintray'
 
 sourceCompatibility = 1.10
 targetCompatibility = 1.10
@@ -55,13 +55,6 @@ dependencies {
 
     testCompile group: 'com.anigenero.junit', name: 'junit-mockito-extension', version: '1.0.1'
 
-}
-
-sonarqube {
-    properties {
-        property "sonar.scm.provider", "git"
-        property "sonar.java.binaries", "build/classes"
-    }
 }
 
 test {
@@ -111,16 +104,15 @@ project.task(type: JacocoCoverageVerification, "jacocoTestVerify") {
 
 check.dependsOn jacocoJupTestReport
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
-    repositories {
-        maven {
-            name 'anigenero-repo'
-            url 'http://repo.anigenero.com/repository/' + ((version.contains('SNAPSHOT')) ? 'maven-snapshots' : 'maven-releases')
-        }
+bintray {
+    user = System.getenv('BINTRAY_USERNAME')
+    key = System.getenv('BINTRAY_API_KEY')
+    publications = ['mavenJava']
+    pkg {
+        repo = 'maven'
+        name = 'junit-mockito-extension'
+        userOrg = System.getenv('BINTRAY_USERNAME')
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
     }
 }

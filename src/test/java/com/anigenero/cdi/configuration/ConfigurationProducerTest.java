@@ -1,4 +1,4 @@
-package com.anigenero.configuration;
+package com.anigenero.cdi.configuration;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

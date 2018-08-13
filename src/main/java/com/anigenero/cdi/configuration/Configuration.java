@@ -1,4 +1,4 @@
-package com.anigenero.configuration;
+package com.anigenero.cdi.configuration;
 
 import javax.enterprise.util.Nonbinding;
 import javax.inject.Qualifier;

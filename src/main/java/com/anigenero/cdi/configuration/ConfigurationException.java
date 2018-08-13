@@ -1,4 +1,4 @@
-package com.anigenero.configuration;
+package com.anigenero.cdi.configuration;
 
 @SuppressWarnings("WeakerAccess")
 public class ConfigurationException extends Exception {

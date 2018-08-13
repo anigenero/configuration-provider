@@ -3,6 +3,7 @@ buildscript {
     repositories {
         mavenCentral()
         mavenLocal()
+        jcenter()
     }
 
     dependencies {
@@ -30,20 +31,14 @@ targetCompatibility = 1.10
 repositories {
     mavenCentral()
     mavenLocal()
+    jcenter()
 }
 
-group 'com.anigenero.cdi.config'
-version '1.0-SNAPSHOT'
+group 'com.anigenero.cdi'
+version '1.0.0'
 
 ext {
-
-    cdiVersion = '2.0'
-    jacksonVersion = '2.8.+'
-
-    assertJVersion = '3.10.+'
     junitVersion = '5.2.+'
-    mockitoVersion = '2.18.+'
-
 }
 
 dependencies {
@@ -53,10 +48,12 @@ dependencies {
 
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitVersion
     testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junitVersion
-    testCompile group: 'javax.enterprise', name: 'cdi-api', version: cdiVersion
+    testCompile group: 'javax.enterprise', name: 'cdi-api', version: '2.0'
 
-    testCompile group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
-    testCompile group: 'org.assertj', name: 'assertj-core', version: assertJVersion
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.18.+'
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.10.+'
+
+    testCompile group: 'com.anigenero.junit', name: 'junit-mockito-extension', version: '1.0.1'
 
 }
 

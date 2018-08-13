@@ -7,13 +7,11 @@
 In your build.gradle, specify the repo and dependencies
 ```groovy
 repositories {
-    maven {
-        url 'http://repo.anigenero.com/repository/maven-public'
-    }
+    jcenter()
 }
 
 dependencies {
-    compile group: 'com.anigenero.cdi.config', name: 'configuration-producer', version: '1.0-SNAPSHOT'
+    compile group: 'com.anigenero.cdi.config', name: 'configuration-producer', version: '1.0.+'
 }
 ```
 

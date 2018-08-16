@@ -3,7 +3,9 @@ buildscript {
     repositories {
         mavenCentral()
         mavenLocal()
-        jcenter()
+        maven {
+            url 'https://dl.bintray.com/anigenero/maven'
+        }
     }
 
     dependencies {
@@ -31,7 +33,9 @@ targetCompatibility = 1.10
 repositories {
     mavenCentral()
     mavenLocal()
-    jcenter()
+    maven {
+        url 'https://dl.bintray.com/anigenero/maven'
+    }
 }
 
 group 'com.anigenero.cdi'
@@ -107,12 +111,55 @@ check.dependsOn jacocoJupTestReport
 bintray {
     user = System.getenv('BINTRAY_USERNAME')
     key = System.getenv('BINTRAY_API_KEY')
-    publications = ['mavenJava']
+    publications = ['mavenJava', 'sourcesJar']
     pkg {
         repo = 'maven'
         name = 'junit-mockito-extension'
         userOrg = System.getenv('BINTRAY_USERNAME')
         licenses = ['MIT']
-        vcsUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
+        vcsUrl = 'https://github.com/anigenero/configuration-provider.git'
+    }
+}
+
+task sourceJar(type: Jar) {
+    classifier 'sources'
+    from sourceSets.main.allJava
+}
+
+def pomConfig = {
+
+    licenses {
+        license {
+            name "MIT"
+            url "https://opensource.org/licenses/MIT"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "anigenero"
+            name "Robin Schultz"
+            email "robin@anigenero.com"
+        }
+    }
+
+    scm {
+        url "https://github.com/anigenero/configuration-provider"
+    }
+
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact tasks.sourceJar
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', 'Configuration provider for DI environments')
+                root.appendNode('name', 'configuration-provider')
+                root.children().last() + pomConfig
+            }
+        }
     }
 }

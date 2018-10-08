@@ -42,14 +42,24 @@ public class ConfigurationProducer {
     @Produces
     @Configuration
     public String produceString(InjectionPoint injectionPoint) throws ConfigurationException {
-        return this.getProperty(getKey(injectionPoint), isNullable(injectionPoint));
+        return this.getString(getKey(injectionPoint), isNullable(injectionPoint));
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    public String getString(final String key, final boolean isNullable) throws ConfigurationException {
+        return this.getProperty(key, isNullable);
     }
 
     @Produces
     @Configuration
     public Integer produceInteger(InjectionPoint injectionPoint) throws ConfigurationException {
+        return this.getInteger(getKey(injectionPoint), isNullable(injectionPoint));
+    }
 
-        final String value = this.getProperty(getKey(injectionPoint), isNullable(injectionPoint));
+    @SuppressWarnings("WeakerAccess")
+    public Integer getInteger(final String key, final boolean isNullable) throws ConfigurationException {
+
+        final String value = this.getProperty(key, isNullable);
         return (value != null) ? Integer.valueOf(value) : null;
 
     }
@@ -57,8 +67,13 @@ public class ConfigurationProducer {
     @Produces
     @Configuration
     public Long produceLong(InjectionPoint injectionPoint) throws ConfigurationException {
+        return this.getLong(getKey(injectionPoint), isNullable(injectionPoint));
+    }
 
-        final String value = this.getProperty(getKey(injectionPoint), isNullable(injectionPoint));
+    @SuppressWarnings("WeakerAccess")
+    public Long getLong(final String key, final boolean isNullable) throws ConfigurationException {
+
+        final String value = this.getProperty(key, isNullable);
         return (value != null) ? Long.valueOf(value) : null;
 
     }
@@ -66,7 +81,12 @@ public class ConfigurationProducer {
     @Produces
     @Configuration
     public Boolean produceBoolean(InjectionPoint injectionPoint) throws ConfigurationException {
-        return Boolean.valueOf(this.getProperty(getKey(injectionPoint), isNullable(injectionPoint)));
+        return this.getBoolean(getKey(injectionPoint), isNullable(injectionPoint));
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    public Boolean getBoolean(final String key, final boolean isNullable) throws ConfigurationException {
+        return Boolean.valueOf(this.getProperty(key, isNullable));
     }
 
     /**

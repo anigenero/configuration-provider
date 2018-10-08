@@ -39,7 +39,7 @@ repositories {
 }
 
 group 'com.anigenero.cdi'
-version '1.0.0'
+version '1.0.1'
 
 ext {
     junitVersion = '5.2.+'

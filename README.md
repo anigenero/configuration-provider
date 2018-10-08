@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/anigenero/configuration-provider.svg?branch=master)](https://travis-ci.org/anigenero/configuration-provider)
 [![codecov](https://codecov.io/gh/anigenero/configuration-provider/branch/master/graph/badge.svg)](https://codecov.io/gh/anigenero/configuration-provider)
-
+[![Download](https://api.bintray.com/packages/anigenero/maven/configuration-provider/images/download.svg) ](https://bintray.com/anigenero/maven/configuration-provider/_latestVersion)
+ 
 ### Setup ###
 In your build.gradle, specify the repo and dependencies
 ```groovy

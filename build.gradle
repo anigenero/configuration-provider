@@ -114,7 +114,7 @@ bintray {
     publications = ['mavenJava', 'sourcesJar']
     pkg {
         repo = 'maven'
-        name = 'junit-mockito-extension'
+        name = 'configuration-provider'
         userOrg = System.getenv('BINTRAY_USERNAME')
         licenses = ['MIT']
         vcsUrl = 'https://github.com/anigenero/configuration-provider.git'
